@@ -1,0 +1,12 @@
+******************* Power BI Project********
+1) Objectives : 
+
+	i) Time Series Analysis
+	ii) Sales Forecasting
+
+2) Description :
+
+	i) Dashboard Creation
+	ii) Data Analysis and Data Visualization
+	iii) Sales Forecasting
+

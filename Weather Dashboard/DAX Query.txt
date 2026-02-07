@@ -1,0 +1,123 @@
+Curr_Temp_C = SUM('Current'[current.temp_c]) & " °C"
+
+Curr_Temp_f = SUM('Current'[current.temp_f]) & " °F"
+
+last_update = "Last Updated, " & FORMAT(FIRSTNONBLANK('Current'[current.last_updated], ""), "dd mmm")
+
+For_Temp_C = AVERAGE(Forcast_Day[forecast.forecastday.day.avgtemp_c]) & " °C"
+
+AQI_Status_Text = 
+    VAR AQI = ROUND(SELECTEDVALUE('Current'[current.air_quality.pm10]),0)
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "Good",
+        AQI <= 100, "Moderate",
+        AQI <= 150, "Unhealthy for Sensitive",
+        AQI <= 200, "Unhealthy",
+        AQI <= 300, "Very Unhealthy",
+        "Hazardous"
+    )
+
+AQI_Color_PM10 = 
+    VAR AQI = ROUND(SELECTEDVALUE('Current'[current.air_quality.pm10]),0)
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "#43d946",   -- Good (Green)
+        AQI <= 100, "#fff570",  -- Moderate (Yellow)
+        AQI <= 150, "#ff9800",  -- Poor (Orange)
+        AQI <= 200, "#d99343",  -- Unhealthy (Red)
+        AQI <= 300, "#ff5b0f",  -- Severe (Purple)
+        "#d95243"               -- Hazardous (Dark Maroon)
+    )
+
+AQI_Suggestion = 
+    VAR AQI = SELECTEDVALUE('Current'[current.air_quality.pm10])
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "Air is clean and healthy",
+        AQI <= 100, "Acceptable air quality, stay active",
+        AQI <= 150, "Sensitive groups should reduce outdoor time",
+        AQI <= 200, "Limit prolonged outdoor exertion",
+        AQI <= 300, "Avoid outdoor activity if possible",
+        "Stay indoors, wear mask if outside"
+    )
+
+Left_Rain_Chance = 100 - SUM(Forcast_Day[forecast.forecastday.day.daily_chance_of_rain])
+
+avg_day_Temp_c = SUM(Forcast_Day[forecast.forecastday.day.avgtemp_c])
+
+avg_hour_Temp_c = SUM(Forcast_Hour[forecast.forecastday.hour.temp_c])
+
+PM10_Left = 300 - SUM('Current'[current.air_quality.pm10])
+
+AQI_Color_CO = 
+    VAR AQI = ROUND(SELECTEDVALUE('Current'[current.air_quality.co]),0)
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "#43d946",
+        AQI <= 100, "#fff570",
+        AQI <= 150, "#ff9800",
+        AQI <= 200, "#d99343",
+        AQI <= 300, "#ff5b0f",
+        "#d95243"
+    )
+
+AQI_Color_SO2 = 
+    VAR AQI = ROUND(SELECTEDVALUE('Current'[current.air_quality.so2]),0)
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "#43d946",
+        AQI <= 100, "#fff570",
+        AQI <= 150, "#ff9800",
+        AQI <= 200, "#d99343",
+        AQI <= 300, "#ff5b0f",
+        "#d95243"
+    )
+
+AQI_Color_O3 = 
+    VAR AQI = ROUND(SELECTEDVALUE('Current'[current.air_quality.o3]),0)
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "#43d946",
+        AQI <= 100, "#fff570",
+        AQI <= 150, "#ff9800",
+        AQI <= 200, "#d99343",
+        AQI <= 300, "#ff5b0f",
+        "#d95243"
+    )
+
+AQI_Color_NO2 = 
+    VAR AQI = ROUND(SELECTEDVALUE('Current'[current.air_quality.no2]),0)
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "#43d946",
+        AQI <= 100, "#fff570",
+        AQI <= 150, "#ff9800",
+        AQI <= 200, "#d99343",
+        AQI <= 300, "#ff5b0f",
+        "#d95243"
+    )
+
+AQI_Color_PM2_5 = 
+    VAR AQI = ROUND(SELECTEDVALUE('Current'[current.air_quality.pm2_5]),0)
+    RETURN SWITCH(
+        TRUE(),
+        AQI <= 50, "#43d946",
+        AQI <= 100, "#fff570",
+        AQI <= 150, "#ff9800",
+        AQI <= 200, "#d99343",
+        AQI <= 300, "#ff5b0f",
+        "#d95243"
+    )
+
+Humidity = SUM('Current'[current.humidity]) & " %"
+
+Wind_Speed = SUM('Current'[current.wind_kph]) & " Kph"
+
+Visibility = SUM('Current'[current.vis_km]) & " KM"
+
+Pressure = SUM('Current'[current.pressure_mb]) & " mm"
+
+UV_Index = SUM('Current'[current.uv])
+
+Precipitation = SUM('Current'[current.precip_mm]) & " mm"
