@@ -69,6 +69,16 @@ The dashboard transforms raw API data into **actionable insights** using advance
 
 ---
 
+## 🎨 Dashboard Backgrounds
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/abusufianrobin/Power_BI_Projects/main/Weather%20Dashboard/Backgrounds/Bg1.PNG" width="250"/>
+  <img src="https://raw.githubusercontent.com/abusufianrobin/Power_BI_Projects/main/Weather%20Dashboard/Backgrounds/Bg2.PNG" width="250"/>
+  <img src="https://raw.githubusercontent.com/abusufianrobin/Power_BI_Projects/main/Weather%20Dashboard/Backgrounds/Bg3.PNG" width="250"/>
+</p>
+
+---
+
 ## 📐 DAX Highlights
 
 Some key DAX measures used in this project:
@@ -85,3 +95,6 @@ AQI_Status_Text =
         AQI <= 300, "Very Unhealthy",
         "Hazardous"
     )
+
+
+
